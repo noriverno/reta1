@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "742448193906",
+    "project_id": "reta1-cd470",
+    "storage_bucket": "reta1-cd470.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742448193906:android:6db6b7a062c8b24deafdeb",
+        "android_client_info": {
+          "package_name": "com.example.reta1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "742448193906-d1t8cap5lapdjomviek4nisep3b39g0j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfwWsfmcwivPlFhota_0AgNBciZP1xsbw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "742448193906-d1t8cap5lapdjomviek4nisep3b39g0j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
