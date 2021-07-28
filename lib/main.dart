@@ -6,6 +6,7 @@ import 'package:reta1/screens/auth_screen copy.dart';
 import 'package:reta1/screens/chat_screen.dart';
 import 'package:reta1/screens/initial_screen.dart';
 import 'package:reta1/screens/splash_screen.dart';
+import 'package:reta1/screens/tabs_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -50,10 +51,13 @@ class MyApp extends StatelessWidget {
             return SplashScreen();
           }
           if (userSnapshot.hasData) {
-            return ChatScreen();
+            // return ChatScreen();
+            return TabsScreen();
           }
           // return AuthScreen();
+          // pantalla inicial
           return InitialScreen();
+          //return TabsScreen();
         },
       ),
       routes: {
