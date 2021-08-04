@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:reta1/screens/auth_screen.dart';
-import 'package:reta1/screens/auth_screen copy.dart';
-import 'package:reta1/screens/chat_screen.dart';
+import 'package:reta1/screens/reg1_screen.dart';
+import 'package:reta1/screens/reg2_screen.dart';
 import 'package:reta1/screens/initial_screen.dart';
 import 'package:reta1/screens/splash_screen.dart';
 import 'package:reta1/screens/tabs_screen.dart';
@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.green,
         accentColor: Colors.black,
         accentColorBrightness: Brightness.dark,
+        unselectedWidgetColor: Colors.white,
         buttonTheme: ButtonTheme.of(context).copyWith(
           buttonColor: Colors.green,
           textTheme: ButtonTextTheme.primary,
@@ -63,7 +64,8 @@ class MyApp extends StatelessWidget {
       routes: {
         InitialScreen.routeName: (ctx) => InitialScreen(),
         AuthScreen.routeName: (ctx) => AuthScreen(),
-        AuthScreen2.routeName: (ctx) => AuthScreen2(),
+        Reg1Screen.routeName: (ctx) => Reg1Screen(),
+        Reg2Screen.routeName: (ctx) => Reg2Screen(),
       },
     );
   }

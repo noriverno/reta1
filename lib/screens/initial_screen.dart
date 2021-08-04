@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:reta1/screens/auth_screen.dart';
-import 'package:reta1/screens/auth_screen copy.dart';
+import 'package:reta1/screens/reg1_screen.dart';
+import 'package:reta1/screens/reg2_screen.dart';
 
 class InitialScreen extends StatelessWidget {
   static const routeName = '/initial';
@@ -30,7 +31,8 @@ class InitialScreen extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed(AuthScreen2.routeName);
+                      // Navigator.of(context).pushNamed(Reg2Screen.routeName);
+                      Navigator.of(context).pushNamed(Reg1Screen.routeName);
                     },
                     style: ButtonStyle(
                       minimumSize: MaterialStateProperty.all(Size(300, 40)),

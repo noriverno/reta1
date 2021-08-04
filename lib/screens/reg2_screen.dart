@@ -4,19 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:reta1/models/user_reg.dart';
 
-import 'package:reta1/widgets/auth/auth_form copy.dart';
+import 'package:reta1/widgets/auth/reg2_form.dart';
 
-class AuthScreen2 extends StatefulWidget {
-  static const routeName = '/auth2';
+class Reg2Screen extends StatefulWidget {
+  static const routeName = '/reg2';
 
-  _AuthScreen2State createState() => _AuthScreen2State();
+  _Reg2ScreenState createState() => _Reg2ScreenState();
 }
 
-class _AuthScreen2State extends State<AuthScreen2> {
+class _Reg2ScreenState extends State<Reg2Screen> {
   final _auth = FirebaseAuth.instance;
   var _isLoading = false;
+  UserReg userReg;
 
   void _submitAuthForm(
     String email,
@@ -38,7 +39,7 @@ class _AuthScreen2State extends State<AuthScreen2> {
       } else {
         authResult = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
-
+/*
         final ref = FirebaseStorage.instance
             .ref()
             .child('user_images')
@@ -47,6 +48,14 @@ class _AuthScreen2State extends State<AuthScreen2> {
         await ref.putFile(image).onComplete;
 
         final url = await ref.getDownloadURL();
+*/
+        final url = '';
+
+        print('22222' +
+            this.userReg.userName +
+            this.userReg.userLastName +
+            this.userReg.userBirth +
+            this.userReg.userGender.toString());
 
         await Firestore.instance
             .collection('users')
@@ -55,6 +64,10 @@ class _AuthScreen2State extends State<AuthScreen2> {
           'username': userName,
           'email': email,
           'image_url': url,
+          'name': this.userReg.userName,
+          'lastname': this.userReg.userLastName,
+          'birth': this.userReg.userName,
+          'gender': this.userReg.userGender.toString(),
         });
       }
 
@@ -85,6 +98,8 @@ class _AuthScreen2State extends State<AuthScreen2> {
 
   @override
   Widget build(BuildContext ctx) {
+    this.userReg = ModalRoute.of(context).settings.arguments as UserReg;
+
     return Scaffold(
       backgroundColor: Color.fromRGBO(119, 185, 87, 1),
       body: Stack(
@@ -97,7 +112,7 @@ class _AuthScreen2State extends State<AuthScreen2> {
               ),
             ),
           ),
-          AuthForm2(
+          Reg2Form(
             _submitAuthForm,
             _isLoading,
           ),

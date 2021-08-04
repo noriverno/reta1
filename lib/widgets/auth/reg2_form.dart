@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:reta1/widgets/picker/user_image_picker.dart';
+//import 'package:reta1/widgets/picker/user_image_picker.dart';
 
-class AuthForm2 extends StatefulWidget {
-  AuthForm2(
+class Reg2Form extends StatefulWidget {
+  Reg2Form(
     this.submitFn,
     this.isLoading,
   );
@@ -20,25 +20,26 @@ class AuthForm2 extends StatefulWidget {
   ) submitFn;
 
   @override
-  _AuthForm2State createState() => _AuthForm2State();
+  _Reg2FormState createState() => _Reg2FormState();
 }
 
-class _AuthForm2State extends State<AuthForm2> {
+class _Reg2FormState extends State<Reg2Form> {
   final _formKey = GlobalKey<FormState>();
   var _isLogin = false;
   var _userEmail = '';
   var _userName = '';
   var _userPassword = '';
+  var _userPassword2 = '';
   File _userImageFile;
 
-  void _pickedImage(File image) {
-    _userImageFile = image;
-  }
+  // void _pickedImage(File image) {
+  //   _userImageFile = image;
+  // }
 
   void _trySubmit() {
     final isValid = _formKey.currentState.validate();
     FocusScope.of(context).unfocus(); // cierra el teclado
-
+/*
     if (_userImageFile == null && !_isLogin) {
       Scaffold.of(context).showSnackBar(SnackBar(
         content: Text('Please pick an image'),
@@ -46,6 +47,20 @@ class _AuthForm2State extends State<AuthForm2> {
       ));
       return;
     }
+*/
+
+    // print('a' + _userPassword.trim());
+    // print('b' + _userPassword2.trim());
+
+    // if (_userPassword.trim() != _userPassword2.trim() && !_isLogin) {
+    //   print('adentro');
+    //   Scaffold.of(context).showSnackBar(SnackBar(
+    //     content: Text('Las contraseñas deben coincidir'),
+    //     backgroundColor: Theme.of(context).errorColor,
+    //   ));
+    //   return;
+    // }
+    // print('afuera');
 
     if (isValid) {
       _formKey.currentState.save();
@@ -86,33 +101,7 @@ class _AuthForm2State extends State<AuthForm2> {
                 SizedBox(
                   height: 45,
                 ),
-                if (!_isLogin) UserImagePicker(_pickedImage),
-                TextFormField(
-                  key: ValueKey('email'),
-                  autocorrect: false,
-                  textCapitalization: TextCapitalization.none,
-                  enableSuggestions: false,
-                  validator: (value) {
-                    if (value.isEmpty || !value.contains('@')) {
-                      return 'Please enter a valida email address';
-                    }
-                    return null;
-                  },
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    labelText: 'E-mail',
-                    labelStyle: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize: 17,
-                    ),
-                    fillColor: Colors.white,
-                    filled: true,
-                  ),
-                  onSaved: (value) {
-                    _userEmail = value;
-                  },
-                ),
-                if (!_isLogin) SizedBox(height: 12),
+                //if (!_isLogin) UserImagePicker(_pickedImage),
                 if (!_isLogin)
                   TextFormField(
                     key: ValueKey('username'),
@@ -126,7 +115,7 @@ class _AuthForm2State extends State<AuthForm2> {
                       return null;
                     },
                     decoration: InputDecoration(
-                      labelText: 'Username',
+                      labelText: 'Usuario*',
                       labelStyle: TextStyle(
                         color: Theme.of(context).primaryColor,
                         fontSize: 17,
@@ -140,15 +129,42 @@ class _AuthForm2State extends State<AuthForm2> {
                   ),
                 SizedBox(height: 12),
                 TextFormField(
+                  key: ValueKey('email'),
+                  autocorrect: false,
+                  textCapitalization: TextCapitalization.none,
+                  enableSuggestions: false,
+                  validator: (value) {
+                    if (value.isEmpty || !value.contains('@')) {
+                      return 'Please enter a valida email address';
+                    }
+                    return null;
+                  },
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    labelText: 'E-mail*',
+                    labelStyle: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 17,
+                    ),
+                    fillColor: Colors.white,
+                    filled: true,
+                  ),
+                  onSaved: (value) {
+                    _userEmail = value;
+                  },
+                ),
+                SizedBox(height: 12),
+                TextFormField(
                   key: ValueKey('password'),
                   validator: (value) {
+                    _userPassword2 = value;
                     if (value.isEmpty || value.length < 7) {
                       return 'Password must be at least 7 characters long.';
                     }
                     return null;
                   },
                   decoration: InputDecoration(
-                    labelText: 'Contraseña',
+                    labelText: 'Contraseña*',
                     labelStyle: TextStyle(
                       color: Theme.of(context).primaryColor,
                       fontSize: 17,
@@ -161,7 +177,34 @@ class _AuthForm2State extends State<AuthForm2> {
                     _userPassword = value;
                   },
                 ),
-                if (_isLogin) SizedBox(height: 12),
+                if (!_isLogin) SizedBox(height: 12),
+                if (!_isLogin)
+                  TextFormField(
+                    key: ValueKey('password2'),
+                    validator: (value) {
+                      if (value != _userPassword2) {
+                        return 'Las contraseñas deben coincidir.';
+                      }
+                      // if (value.isEmpty || value.length < 7) {
+                      //   return 'Password must be at least 7 characters long.';
+                      // }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      labelText: 'Confirmar Contraseña*',
+                      labelStyle: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontSize: 17,
+                      ),
+                      fillColor: Colors.white,
+                      filled: true,
+                    ),
+                    obscureText: true,
+                    onSaved: (value) {
+                      // _userPassword2 = value;
+                    },
+                  ),
+                SizedBox(height: 12),
                 if (_isLogin)
                   Text(
                     '¿Olvidaste la contraseña?',
