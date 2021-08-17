@@ -7,6 +7,7 @@ class AuthForm extends StatefulWidget {
   AuthForm(
     this.submitFn,
     this.isLoading,
+    this.submitFB,
   );
 
   final bool isLoading;
@@ -18,6 +19,8 @@ class AuthForm extends StatefulWidget {
     bool isLogin,
     BuildContext ctx,
   ) submitFn;
+
+  final Future Function() submitFB;
 
   @override
   _AuthFormState createState() => _AuthFormState();
@@ -206,6 +209,15 @@ class _AuthFormState extends State<AuthForm> {
                     ),
                     textColor: Theme.of(context).primaryColor,
                   ),
+                OutlineButton(
+                  onPressed: () async {
+                    await widget.submitFB();
+                  },
+                  child: Text(
+                    'Login with facebook',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
               ],
             ),
           ),

@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
 import 'package:reta1/widgets/auth/auth_form.dart';
 
@@ -17,6 +18,56 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   final _auth = FirebaseAuth.instance;
   var _isLoading = false;
+
+  final _facebookLogin = FacebookLogin();
+
+  Future _handleLoginFB() async {
+    final _result = await _facebookLogin.logIn(['email']);
+
+    switch (_result.status) {
+      case FacebookLoginStatus.cancelledByUser:
+        print('FacebookLoginStatus.cancelledByUser');
+        break;
+      case FacebookLoginStatus.error:
+        print('FacebookLoginStatus.error');
+        break;
+      case FacebookLoginStatus.loggedIn:
+        try {
+          loginWithfacebook(_result);
+        } catch (e) {
+          print(e);
+        }
+        break;
+    }
+  }
+
+  void loginWithfacebook(FacebookLoginResult result) async {
+    AuthResult authResult;
+    final FacebookAccessToken accessToken = result.accessToken;
+    AuthCredential credential =
+        FacebookAuthProvider.getCredential(accessToken: accessToken.token);
+    authResult = await _auth.signInWithCredential(credential);
+    if (authResult.additionalUserInfo.isNewUser) {
+      await Firestore.instance
+          .collection('users')
+          .document(authResult.user.uid)
+          .setData({
+        'username': authResult.user.email,
+        'email': authResult.user.email,
+        'image_url': '',
+        'name': authResult.user.displayName,
+        'lastname': '',
+        'birth': '',
+        'gender': '',
+      });
+    }
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    Navigator.of(context).pop();
+  }
 
   void _submitAuthForm(
     String email,
@@ -100,6 +151,7 @@ class _AuthScreenState extends State<AuthScreen> {
           AuthForm(
             _submitAuthForm,
             _isLoading,
+            _handleLoginFB,
           ),
         ],
       ),
