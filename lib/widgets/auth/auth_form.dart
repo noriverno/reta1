@@ -8,6 +8,7 @@ class AuthForm extends StatefulWidget {
     this.submitFn,
     this.isLoading,
     this.submitFB,
+    this.signInAnonymously,
   );
 
   final bool isLoading;
@@ -21,6 +22,8 @@ class AuthForm extends StatefulWidget {
   ) submitFn;
 
   final Future Function() submitFB;
+
+  final void Function() signInAnonymously;
 
   @override
   _AuthFormState createState() => _AuthFormState();
@@ -191,6 +194,23 @@ class _AuthFormState extends State<AuthForm> {
                       ),
                     ),
                   ),
+                SizedBox(height: 12),
+                ElevatedButton(
+                  onPressed: widget.signInAnonymously,
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(Size(400, 50)),
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+                  ),
+                  child: Text(
+                    'SkIp',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 12),
                 if (!widget.isLoading)
                   FlatButton(
                     onPressed: () {
@@ -199,9 +219,7 @@ class _AuthFormState extends State<AuthForm> {
                       });
                     },
                     child: Text(
-                      _isLogin
-                          ? '¿No tienes cuenta aún? Registrate'
-                          : 'Ya tengo cuenta',
+                      _isLogin ? 'O' : 'Ya tengo cuenta',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 17,
@@ -209,14 +227,12 @@ class _AuthFormState extends State<AuthForm> {
                     ),
                     textColor: Theme.of(context).primaryColor,
                   ),
-                OutlineButton(
+                SizedBox(height: 12),
+                FlatButton(
                   onPressed: () async {
                     await widget.submitFB();
                   },
-                  child: Text(
-                    'Login with facebook',
-                    style: TextStyle(fontSize: 20),
-                  ),
+                  child: Image.asset('assets/images/reta_login_fb.jpg'),
                 ),
               ],
             ),

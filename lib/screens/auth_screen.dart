@@ -69,6 +69,15 @@ class _AuthScreenState extends State<AuthScreen> {
     Navigator.of(context).pop();
   }
 
+  void _signInAnonymously() async {
+    AuthResult authResul = await _auth.signInAnonymously();
+    setState(() {
+      _isLoading = true;
+    });
+
+    Navigator.of(context).pop();
+  }
+
   void _submitAuthForm(
     String email,
     String password,
@@ -152,6 +161,7 @@ class _AuthScreenState extends State<AuthScreen> {
             _submitAuthForm,
             _isLoading,
             _handleLoginFB,
+            _signInAnonymously,
           ),
         ],
       ),

@@ -57,6 +57,7 @@ flutter:
     - assets/images/reta_bkg.jpg
     - assets/images/reta_bkg2.jpg
     - assets/images/reta_bkg_login.jpg
+    - assets/images/reta_login_fb.jpg    
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
