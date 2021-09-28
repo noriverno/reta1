@@ -175,6 +175,38 @@ class Post extends StatelessWidget {
             image,
           ),
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                children: [
+                  Container(
+                      width: 300,
+                      child: Text(
+                        'En el apertura 21 ¿quién queda campeón? descubre aquí nuestras predicciones',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )),
+                ],
+              ),
+            ),
+            Container(
+              width: 40,
+              height: 100,
+              decoration: BoxDecoration(color: Colors.grey.shade200),
+              child: Icon(
+                Icons.star,
+                color: Colors.yellow.shade700,
+                size: 25.0,
+              ),
+            ),
+          ],
+        ),
         Container(
           height: 10.0,
           color: Colors.green,

@@ -80,6 +80,7 @@ class _AuthFormState extends State<AuthForm> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
+                const SizedBox(height: 100),
                 if (_isLogin)
                   Text(
                     'Inicio sesion para continuar',
