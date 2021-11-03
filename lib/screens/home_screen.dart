@@ -58,21 +58,21 @@ class HomePage extends StatelessWidget {
                         image: "assets/images/ph_video1.jpg",
                         name: "user3",
                       ),
-                      const SizedBox(width: 16.0),
-                      Story(
-                        image: "assets/users/0.jpeg",
-                        name: "user1",
-                      ),
-                      const SizedBox(width: 16.0),
-                      Story(
-                        image: "assets/users/1.jpeg",
-                        name: "user2",
-                      ),
-                      const SizedBox(width: 16.0),
-                      Story(
-                        image: "assets/users/2.jpeg",
-                        name: "user3",
-                      ),
+                      // const SizedBox(width: 16.0),
+                      // Story(
+                      //   image: "",
+                      //   name: "user1",
+                      // ),
+                      // const SizedBox(width: 16.0),
+                      // Story(
+                      //   image: "",
+                      //   name: "user2",
+                      // ),
+                      // const SizedBox(width: 16.0),
+                      // Story(
+                      //   image: "",
+                      //   name: "user3",
+                      // ),
                     ],
                   ),
                 ),

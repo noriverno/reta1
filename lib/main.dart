@@ -13,25 +13,11 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // final Map<int, Color> colorCodes = {
-    //   50: Color.fromRGBO(119, 185, 87, .1),
-    //   100: Color.fromRGBO(119, 185, 87, .2),
-    //   200: Color.fromRGBO(119, 185, 87, .3),
-    //   300: Color.fromRGBO(119, 185, 87, .4),
-    //   400: Color.fromRGBO(119, 185, 87, .5),
-    //   500: Color.fromRGBO(119, 185, 87, .6),
-    //   600: Color.fromRGBO(119, 185, 87, .7),
-    //   700: Color.fromRGBO(119, 185, 87, .8),
-    //   800: Color.fromRGBO(119, 185, 87, .9),
-    //   900: Color.fromRGBO(119, 185, 87, 1),
-    // };
-
-    // final MaterialColor color = new MaterialColor(0xFF77b957, colorCodes);
-
     return MaterialApp(
       title: 'Reta Deportiva',
       theme: ThemeData(
         // primaryColor: color[900],
+        fontFamily: 'Futura',
         primaryColor: Colors.green[800],
         backgroundColor: Colors.green,
         accentColor: Colors.black,

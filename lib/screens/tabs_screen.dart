@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:reta1/screens/TestMe.dart';
 import 'package:reta1/screens/chat_screen.dart';
 import 'package:reta1/screens/chat_screen2.dart';
 import 'package:reta1/screens/home_screen.dart';
+import 'package:reta1/screens/video_screen.dart';
 
 import '../widgets/main_drawer.dart';
 
@@ -19,18 +21,18 @@ class _TabsScreenState extends State<TabsScreen> {
     _pages = [
       {
         'page': HomeScreen(),
-        'title': 'Kancha',
+        'title': 'Reta Deportiva',
       },
       {
         'page': ChatScreen2(),
         'title': 'Comentarios',
       },
       {
-        'page': null,
+        'page': VideoScreen(),
         'title': 'Perfil',
       },
       {
-        'page': null,
+        'page': TestMe(),
         'title': 'Notificaciones',
       },
     ];

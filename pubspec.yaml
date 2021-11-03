@@ -35,6 +35,8 @@ dependencies:
   firebase_messaging: ^6.0.13
   firebase_core: ^0.4.0
   flutter_facebook_login: ^3.0.0
+  youtube_player_flutter: ^6.0.0
+  comment_box: ^0.0.15
   
 
 dev_dependencies:
@@ -86,6 +88,12 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+  fonts:
+    - family: Futura
+      fonts:
+        - asset: assets/fonts/FuturaStd-Medium.otf
+        - asset: assets/fonts/FuturaStd-Bold.otf
+          weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
