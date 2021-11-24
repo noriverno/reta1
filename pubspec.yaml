@@ -61,9 +61,18 @@ flutter:
     - assets/images/reta_bkg_login.jpg
     - assets/images/reta_login_fb.jpg
     - assets/images/ph_foro1.jpg
+    - assets/images/ph_foro2.jpg
+    - assets/images/ph_foro3.jpg
+    - assets/images/ph_foro4.jpg
     - assets/images/ph_titulo_foros.jpg
     - assets/images/ph_titulo_videoblogs.jpg
     - assets/images/ph_video1.jpg
+    - assets/images/ph_video2.jpg
+    - assets/images/ph_video3.jpg
+    - assets/images/ph_video4.jpg
+    - assets/images/RETA_REACCION_ENOJADO.png
+    - assets/images/RETA_REACCION_MEGUSTA.png
+    - assets/images/RETA_REACCION_RISA.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

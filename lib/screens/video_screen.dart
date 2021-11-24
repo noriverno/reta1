@@ -5,6 +5,8 @@ import 'package:reta1/screens/home_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoScreen extends StatelessWidget {
+  static const routeName = '/video';
+
   @override
   Widget build(BuildContext context) {
     const name0 = "Elisa Long";
@@ -15,17 +17,21 @@ class VideoScreen extends StatelessWidget {
     const name5 = "Marvin Thompsett";
     const name6 = "Lennox Boone";
 
+    final arguments = ModalRoute.of(context).settings.arguments as Map;
+    final videoId = arguments['id'];
+    final videoTitle = arguments['title'];
+
     List<Widget> _layouts = [
-      _videoInfo(),
+      _videoInfo(videoTitle),
       SizedBox(height: 8.0),
       PostX(
-        profileImage: "assets/images/ph_foro1.jpg",
+        profileImage: "assets/images/ph_foro2.jpg",
         text: "Este es un comentario aleatorio del tema discutido",
         name: name0,
       ),
       SizedBox(height: 8.0),
       PostX(
-        profileImage: "assets/images/ph_video1.jpg",
+        profileImage: "assets/images/ph_foro4.jpg",
         text: "Este es otro comentario que escrito por el usuario",
         name: name1,
       ),
@@ -40,7 +46,7 @@ class VideoScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          _buildVideoPlayer(context),
+          _buildVideoPlayer(context, videoId),
           Expanded(
               child: ListView(
             children: _layouts,
@@ -51,9 +57,9 @@ class VideoScreen extends StatelessWidget {
   }
 }
 
-Widget _buildVideoPlayer(BuildContext context) {
+Widget _buildVideoPlayer(BuildContext context, String videoId) {
   YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: 'JkVuEv98bYI',
+    initialVideoId: videoId,
     flags: YoutubePlayerFlags(
       autoPlay: false,
       mute: false,
@@ -82,12 +88,12 @@ Widget _comments() {
   return Container();
 }
 
-Widget _videoInfo() {
+Widget _videoInfo(String videoTitle) {
   return Column(
     children: <Widget>[
       ListTile(
-        title: Text('Titulo del video'),
-        subtitle: Text('Subtitulo del video'),
+        title: Text(videoTitle),
+        //subtitle: Text('Subtitulo del video'),
         trailing: Icon(Icons.arrow_drop_down),
       ),
       Container(
@@ -95,11 +101,29 @@ Widget _videoInfo() {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            _buildButtonColumn(Icons.thumb_up, '1'),
-            _buildButtonColumn(Icons.thumb_down, '0'),
-            _buildButtonColumn(Icons.share, "Share"),
-            _buildButtonColumn(Icons.cloud_download, "Download"),
+            _buildCustomButtonColumn(
+                Image.asset(
+                  "assets/images/RETA_REACCION_MEGUSTA.png",
+                  width: 40.0,
+                  height: 40.0,
+                ),
+                '3'),
+            _buildCustomButtonColumn(
+                Image.asset(
+                  "assets/images/RETA_REACCION_RISA.png",
+                  width: 40.0,
+                  height: 40.0,
+                ),
+                '1'),
+            _buildCustomButtonColumn(
+                Image.asset(
+                  "assets/images/RETA_REACCION_ENOJADO.png",
+                  width: 40.0,
+                  height: 40.0,
+                ),
+                '1'),
             _buildButtonColumn(Icons.playlist_add, "Save"),
+            _buildButtonColumn(Icons.share, "Share"),
           ],
         ),
       )
@@ -116,6 +140,21 @@ Widget _buildButtonColumn(IconData icon, String text) {
           icon,
           color: Colors.grey[700],
         ),
+      ),
+      Text(
+        text,
+        style: TextStyle(color: Colors.grey[700]),
+      ),
+    ],
+  );
+}
+
+Widget _buildCustomButtonColumn(Image icon, String text) {
+  return Column(
+    children: <Widget>[
+      Container(
+        padding: const EdgeInsets.only(bottom: 8.0),
+        child: new Tab(icon: icon),
       ),
       Text(
         text,

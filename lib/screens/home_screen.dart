@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reta1/screens/video_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -45,18 +46,25 @@ class HomePage extends StatelessWidget {
                   child: Row(
                     children: [
                       Story(
-                        image: "assets/images/ph_video1.jpg",
+                        image: "assets/images/ph_video2.jpg",
                         name: "user1",
+                        id: 'ATR2gFYChWI',
+                        title: '¡Aprender a hacer dominadas perfectas!',
                       ),
                       const SizedBox(width: 16.0),
                       Story(
-                        image: "assets/images/ph_video1.jpg",
+                        image: "assets/images/ph_video3.jpg",
                         name: "user2",
+                        id: 'pHF3EqYdFKA',
+                        title: 'Una vergüenza la selección mexicana',
                       ),
                       const SizedBox(width: 16.0),
                       Story(
-                        image: "assets/images/ph_video1.jpg",
+                        image: "assets/images/ph_video4.jpg",
                         name: "user3",
+                        id: 'sS5UbyhtxjY',
+                        title:
+                            'Los mejores goles de la selección. ¿Cuál fue el mejor?',
                       ),
                       // const SizedBox(width: 16.0),
                       // Story(
@@ -100,17 +108,25 @@ class HomePage extends StatelessWidget {
                   Post(
                     userName: 'dancamdev',
                     userImage: 'assets/users/dancamdev.png',
-                    image: 'assets/images/ph_foro1.jpg',
+                    image: 'assets/images/ph_foro2.jpg',
+                    title: '¿Chicharito debería regresar a la selección?',
+                    id: '1',
                   ),
                   Post(
                     userName: 'dancamdev',
                     userImage: 'assets/users/dancamdev.png',
-                    image: 'assets/images/ph_foro1.jpg',
+                    image: 'assets/images/ph_foro3.jpg',
+                    title:
+                        '¿Quién ganará la liga MX? Dinos para ti quién será el campeón',
+                    id: '2',
                   ),
                   Post(
                     userName: 'dancamdev',
                     userImage: 'assets/users/dancamdev.png',
-                    image: 'assets/images/ph_foro1.jpg',
+                    image: 'assets/images/ph_foro4.jpg',
+                    title:
+                        'Malos resultados en el Tri ¿Quién es el mayor culpable?',
+                    id: '3',
                   ),
                 ],
               ),
@@ -125,25 +141,41 @@ class HomePage extends StatelessWidget {
 class Story extends StatelessWidget {
   final String image;
   final String name;
+  final String id;
+  final String title;
 
-  const Story({Key key, this.image, this.name}) : super(key: key);
+  const Story({Key key, this.image, this.name, this.id, this.title})
+      : super(key: key);
+
+  void selectVideo(BuildContext context) {
+    Navigator.of(context).pushNamed(
+      VideoScreen.routeName,
+      arguments: {
+        'id': id,
+        'title': title,
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: 200.0,
-          height: 110.0,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: instagramColors,
-              begin: Alignment.bottomLeft,
-              end: Alignment.topRight,
+        InkWell(
+          onTap: () => selectVideo(context),
+          child: Container(
+            width: 200.0,
+            height: 110.0,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: instagramColors,
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
+              ),
             ),
-          ),
-          child: ClipRRect(
-            child: Image.asset(image),
+            child: ClipRRect(
+              child: Image.asset(image),
+            ),
           ),
         ),
       ],
@@ -155,12 +187,16 @@ class Post extends StatelessWidget {
   final String userImage;
   final String userName;
   final String image;
+  final String title;
+  final String id;
 
   const Post({
     Key key,
     this.userName,
     this.userImage,
     this.image,
+    this.title,
+    this.id,
   }) : super(key: key);
 
   @override
@@ -185,7 +221,7 @@ class Post extends StatelessWidget {
                   Container(
                       width: 300,
                       child: Text(
-                        'En el apertura 21 ¿quién queda campeón? descubre aquí nuestras predicciones',
+                        title,
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.green,

@@ -7,6 +7,7 @@ import 'package:reta1/screens/reg2_screen.dart';
 import 'package:reta1/screens/initial_screen.dart';
 import 'package:reta1/screens/splash_screen.dart';
 import 'package:reta1/screens/tabs_screen.dart';
+import 'package:reta1/screens/video_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
         AuthScreen.routeName: (ctx) => AuthScreen(),
         Reg1Screen.routeName: (ctx) => Reg1Screen(),
         Reg2Screen.routeName: (ctx) => Reg2Screen(),
+        VideoScreen.routeName: (ctx) => VideoScreen(),
       },
     );
   }
