@@ -23,7 +23,7 @@ class VideoScreen extends StatelessWidget {
 
     List<Widget> _layouts = [
       _videoInfo(videoTitle),
-      SizedBox(height: 8.0),
+      // SizedBox(height: 8.0),
       PostX(
         profileImage: "assets/images/ph_foro2.jpg",
         text: "Este es un comentario aleatorio del tema discutido",
@@ -91,12 +91,19 @@ Widget _comments() {
 Widget _videoInfo(String videoTitle) {
   return Column(
     children: <Widget>[
-      ListTile(
-        title: Text(videoTitle),
-        //subtitle: Text('Subtitulo del video'),
-        trailing: Icon(Icons.arrow_drop_down),
-      ),
+      // ListTile(
+      //   title: Text(
+      //     videoTitle,
+      //     style: TextStyle(
+      //       fontSize: 18,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      //   //subtitle: Text('Subtitulo del video'),
+      //   //trailing: Icon(Icons.arrow_drop_down),
+      // ),
       Container(
+        color: Colors.grey[200],
         padding: const EdgeInsets.all(16.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,8 +129,8 @@ Widget _videoInfo(String videoTitle) {
                   height: 40.0,
                 ),
                 '1'),
-            _buildButtonColumn(Icons.playlist_add, "Save"),
-            _buildButtonColumn(Icons.share, "Share"),
+            _buildButtonColumn(Icons.comment, "Comentar"),
+            _buildButtonColumn(Icons.ios_share, "Compartir"),
           ],
         ),
       )

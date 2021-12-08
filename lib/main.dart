@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:reta1/screens/auth_screen.dart';
+import 'package:reta1/screens/forum_screen.dart';
 import 'package:reta1/screens/reg1_screen.dart';
 import 'package:reta1/screens/reg2_screen.dart';
 import 'package:reta1/screens/initial_screen.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         Reg1Screen.routeName: (ctx) => Reg1Screen(),
         Reg2Screen.routeName: (ctx) => Reg2Screen(),
         VideoScreen.routeName: (ctx) => VideoScreen(),
+        ForumScreen.routeName: (ctx) => ForumScreen(),
       },
     );
   }

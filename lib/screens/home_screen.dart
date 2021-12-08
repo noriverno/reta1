@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reta1/screens/forum_screen.dart';
 import 'package:reta1/screens/video_screen.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -115,10 +116,18 @@ class HomePage extends StatelessWidget {
                   Post(
                     userName: 'dancamdev',
                     userImage: 'assets/users/dancamdev.png',
+                    image: 'assets/images/ph_foro_pub.jpg',
+                    title: 'La cancha más grande, clic aquí y descubre más',
+                    id: '2',
+                    ad: true,
+                  ),
+                  Post(
+                    userName: 'dancamdev',
+                    userImage: 'assets/users/dancamdev.png',
                     image: 'assets/images/ph_foro3.jpg',
                     title:
                         '¿Quién ganará la liga MX? Dinos para ti quién será el campeón',
-                    id: '2',
+                    id: '3',
                   ),
                   Post(
                     userName: 'dancamdev',
@@ -126,7 +135,7 @@ class HomePage extends StatelessWidget {
                     image: 'assets/images/ph_foro4.jpg',
                     title:
                         'Malos resultados en el Tri ¿Quién es el mayor culpable?',
-                    id: '3',
+                    id: '4',
                   ),
                 ],
               ),
@@ -189,6 +198,7 @@ class Post extends StatelessWidget {
   final String image;
   final String title;
   final String id;
+  final bool ad;
 
   const Post({
     Key key,
@@ -197,57 +207,83 @@ class Post extends StatelessWidget {
     this.image,
     this.title,
     this.id,
+    this.ad,
   }) : super(key: key);
+
+  void selectForum(BuildContext context) {
+    Navigator.of(context).pushNamed(
+      ForumScreen.routeName,
+      arguments: {
+        'id': id,
+        'title': title,
+        'image': image,
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          child: Image.asset(
-            image,
+    return InkWell(
+      onTap: () => selectForum(context),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            child: Image.asset(
+              image,
+            ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                children: [
-                  Container(
-                      width: 300,
-                      child: Text(
-                        title,
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )),
-                ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    if (this.ad != null)
+                      Container(
+                          width: 300,
+                          child: Text(
+                            'Publicidad Pagada',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.green,
+                            ),
+                          )),
+                    if (this.ad != null) SizedBox(height: 8.0),
+                    Container(
+                        width: 300,
+                        child: Text(
+                          title,
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )),
+                  ],
+                ),
               ),
-            ),
-            Container(
-              width: 40,
-              height: 100,
-              decoration: BoxDecoration(color: Colors.grey.shade200),
-              child: Icon(
-                Icons.star,
-                color: Colors.yellow.shade700,
-                size: 25.0,
+              Container(
+                width: 40,
+                height: 100,
+                decoration: BoxDecoration(color: Colors.grey.shade200),
+                child: Icon(
+                  Icons.star,
+                  color: Colors.yellow.shade700,
+                  size: 25.0,
+                ),
               ),
-            ),
-          ],
-        ),
-        Container(
-          height: 10.0,
-          color: Colors.green,
-        ),
-      ],
+            ],
+          ),
+          Container(
+            height: 10.0,
+            color: Colors.green,
+          ),
+        ],
+      ),
     );
   }
 }

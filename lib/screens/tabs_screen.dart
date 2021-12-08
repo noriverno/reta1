@@ -21,7 +21,7 @@ class _TabsScreenState extends State<TabsScreen> {
     _pages = [
       {
         'page': HomeScreen(),
-        'title': 'Reta Deportiva',
+        'title': 'Reta Futbolera',
       },
       {
         'page': ChatScreen2(),

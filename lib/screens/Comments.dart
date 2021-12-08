@@ -15,7 +15,7 @@ class PostX extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.grey[700],
       ),
       child: Column(
         children: [
@@ -27,7 +27,10 @@ class PostX extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Text(
               text,
-              style: TextStyle(fontSize: 18.0),
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.white,
+              ),
             ),
           ),
           _LikeCommentShareRow(),
@@ -47,25 +50,45 @@ class _LikeCommentShareRow extends StatelessWidget {
       children: [
         Expanded(
           child: _WhatsOnYourMindButton(
-            text: "Like",
+            text: "Me gusta",
             iconColor: Colors.grey,
-            icon: Icons.thumb_up_alt_outlined,
+            //icon: Icons.thumb_up_alt_outlined,
+            bgColor: Colors.grey[200],
           ),
         ),
-        SizedBox(width: 1.0),
+        // SizedBox(width: 1.0),
         Expanded(
           child: _WhatsOnYourMindButton(
-            text: "Comment",
+            text: "Responder",
             iconColor: Colors.grey,
-            icon: Icons.messenger_outline_sharp,
+            //icon: Icons.messenger_outline_sharp,
+            bgColor: Colors.grey[200],
           ),
         ),
-        SizedBox(width: 1.0),
+        // SizedBox(width: 1.0),
+        // Expanded(
+        //   child: _WhatsOnYourMindButton(
+        //     text: "Share",
+        //     iconColor: Colors.grey,
+        //     icon: Icons.share,
+        //   ),
+        // ),
+        // SizedBox(width: 1.0),
         Expanded(
           child: _WhatsOnYourMindButton(
-            text: "Share",
+            text: "15 min",
             iconColor: Colors.grey,
-            icon: Icons.share,
+            //icon: Icons.share,
+            bgColor: Colors.grey[200],
+          ),
+        ),
+        // SizedBox(width: 1.0),
+        Expanded(
+          child: _WhatsOnYourMindButton(
+            text: "143",
+            iconColor: Colors.white,
+            icon: Icons.sports_soccer,
+            bgColor: Colors.green,
           ),
         ),
       ],
@@ -103,7 +126,10 @@ class _PostHeader extends StatelessWidget {
                   children: [
                     TextSpan(
                         text: "$name ",
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        )),
                     //TextSpan(text: "updated his status"),
                   ],
                 ),
@@ -121,12 +147,10 @@ class _WhatsOnYourMindButton extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
   final String text;
+  final Color bgColor;
 
-  const _WhatsOnYourMindButton({
-    this.icon,
-    this.iconColor,
-    this.text,
-  });
+  const _WhatsOnYourMindButton(
+      {this.icon, this.iconColor, this.text, this.bgColor});
 
   @override
   Widget build(BuildContext context) {
@@ -134,13 +158,19 @@ class _WhatsOnYourMindButton extends StatelessWidget {
       height: 50.0,
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: bgColor,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: iconColor),
-            SizedBox(width: 8.0),
+            // if (icon != null) Icon(icon, color: iconColor),
+            if (icon != null)
+              Image.asset(
+                "assets/images/RETA_REACCION_MEGUSTA.png",
+                width: 30.0,
+                height: 30.0,
+              ),
+            if (icon != null) SizedBox(width: 8.0),
             Text(text, style: TextStyle(fontWeight: FontWeight.bold)),
           ],
         ),
