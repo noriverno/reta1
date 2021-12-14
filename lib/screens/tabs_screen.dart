@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reta1/screens/TestMe.dart';
-import 'package:reta1/screens/chat_screen.dart';
+import 'package:reta1/reactions/TestReaction.dart';
 import 'package:reta1/screens/chat_screen2.dart';
 import 'package:reta1/screens/home_screen.dart';
 import 'package:reta1/screens/video_screen.dart';
@@ -32,7 +31,7 @@ class _TabsScreenState extends State<TabsScreen> {
         'title': 'Perfil',
       },
       {
-        'page': TestMe(),
+        'page': TestReaction(),
         'title': 'Notificaciones',
       },
     ];

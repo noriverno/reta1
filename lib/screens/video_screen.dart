@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:reta1/screens/Comments.dart';
-import 'package:reta1/screens/TestMe.dart';
-import 'package:reta1/screens/home_screen.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoScreen extends StatelessWidget {

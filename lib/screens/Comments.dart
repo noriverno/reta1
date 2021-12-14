@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_reaction_button/flutter_reaction_button.dart';
+import '../reactions/data/example_data.dart' as Example;
 
-class PostX extends StatelessWidget {
+class PostX extends StatefulWidget {
   final String profileImage;
   final String name;
   final String text;
+  final List<Reaction> reactions;
 
   const PostX({
     this.profileImage,
     this.name,
     this.text,
+    this.reactions,
   });
 
+  @override
+  _PostXState createState() => _PostXState();
+}
+
+class _PostXState extends State<PostX> {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -20,40 +29,64 @@ class PostX extends StatelessWidget {
       child: Column(
         children: [
           _PostHeader(
-            profileImage: profileImage,
-            name: name,
+            profileImage: widget.profileImage,
+            name: widget.name,
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              text,
+              widget.text,
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.white,
               ),
             ),
           ),
-          _LikeCommentShareRow(),
+          _LikeCommentShareRow(Example.reactions),
         ],
       ),
     );
   }
 }
 
-class _LikeCommentShareRow extends StatelessWidget {
-  const _LikeCommentShareRow();
+class _LikeCommentShareRow extends StatefulWidget {
+  final List<Reaction> reactions;
+  const _LikeCommentShareRow(this.reactions);
 
+  @override
+  __LikeCommentShareRowState createState() => __LikeCommentShareRowState();
+}
+
+class __LikeCommentShareRowState extends State<_LikeCommentShareRow> {
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Expanded(
-          child: _WhatsOnYourMindButton(
-            text: "Me gusta",
-            iconColor: Colors.grey,
-            //icon: Icons.thumb_up_alt_outlined,
-            bgColor: Colors.grey[200],
+          // child: _WhatsOnYourMindButton(
+          //   text: "Me gusta",
+          //   iconColor: Colors.grey,
+          //   //icon: Icons.thumb_up_alt_outlined,
+          //   bgColor: Colors.grey[200],
+          // ),
+          child: SizedBox(
+            height: 50.0,
+            child: DecoratedBox(
+              decoration: BoxDecoration(color: Colors.grey[200]),
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                FlutterReactionButtonCheck(
+                  onReactionChanged: (reaction, index, isChecked) {
+                    print('reaction selected index: $index');
+                  },
+                  reactions: widget.reactions,
+                  initialReaction: Example.defaultInitialReaction,
+                  selectedReaction: widget.reactions[1],
+                  boxAlignment: AlignmentDirectional.centerStart,
+                ),
+              ]),
+            ),
           ),
         ),
         // SizedBox(width: 1.0),
