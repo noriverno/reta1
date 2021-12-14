@@ -141,7 +141,7 @@ class _Reg1FormState extends State<Reg1Form> {
                             'Femenino',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 15,
+                              fontSize: 14,
                               color: Colors.white,
                             ),
                           ),
@@ -165,7 +165,7 @@ class _Reg1FormState extends State<Reg1Form> {
                             'Masculino',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 15,
+                              fontSize: 14,
                               color: Colors.white,
                             ),
                           ),
@@ -189,7 +189,7 @@ class _Reg1FormState extends State<Reg1Form> {
                             'Otro',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 15,
+                              fontSize: 14,
                               color: Colors.white,
                             ),
                           ),
@@ -212,7 +212,7 @@ class _Reg1FormState extends State<Reg1Form> {
                           'Prefiero no decirlo',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 15,
+                            fontSize: 14,
                             color: Colors.white,
                           ),
                         ),

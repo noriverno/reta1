@@ -6,6 +6,7 @@ import 'package:reta1/screens/forum_screen.dart';
 import 'package:reta1/screens/reg1_screen.dart';
 import 'package:reta1/screens/reg2_screen.dart';
 import 'package:reta1/screens/initial_screen.dart';
+import 'package:reta1/screens/reg3_screen.dart';
 import 'package:reta1/screens/splash_screen.dart';
 import 'package:reta1/screens/tabs_screen.dart';
 import 'package:reta1/screens/video_screen.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         AuthScreen.routeName: (ctx) => AuthScreen(),
         Reg1Screen.routeName: (ctx) => Reg1Screen(),
         Reg2Screen.routeName: (ctx) => Reg2Screen(),
+        Reg3Screen.routeName: (ctx) => Reg3Screen(),
         VideoScreen.routeName: (ctx) => VideoScreen(),
         ForumScreen.routeName: (ctx) => ForumScreen(),
       },

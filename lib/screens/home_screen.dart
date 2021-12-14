@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:reta1/screens/forum_screen.dart';
-import 'package:reta1/screens/video_screen.dart';
+import 'package:reta1/widgets/Story.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -8,14 +9,6 @@ class HomeScreen extends StatelessWidget {
     return HomePage();
   }
 }
-
-const instagramColors = [
-  Color(0xFFfeda75),
-  Color(0xfffa7e1e),
-  Color(0xffd62976),
-  Color(0xff962fbf),
-  Color(0xff4f5bd5),
-];
 
 class HomePage extends StatelessWidget {
   @override
@@ -143,51 +136,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class Story extends StatelessWidget {
-  final String image;
-  final String name;
-  final String id;
-  final String title;
-
-  const Story({Key key, this.image, this.name, this.id, this.title})
-      : super(key: key);
-
-  void selectVideo(BuildContext context) {
-    Navigator.of(context).pushNamed(
-      VideoScreen.routeName,
-      arguments: {
-        'id': id,
-        'title': title,
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        InkWell(
-          onTap: () => selectVideo(context),
-          child: Container(
-            width: 200.0,
-            height: 110.0,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: instagramColors,
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-              ),
-            ),
-            child: ClipRRect(
-              child: Image.asset(image),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

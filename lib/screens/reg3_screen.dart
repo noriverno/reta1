@@ -5,17 +5,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:reta1/models/user_reg.dart';
-import 'package:reta1/screens/reg3_screen.dart';
+import 'package:reta1/widgets/auth/reg3_form.dart';
 
-import 'package:reta1/widgets/auth/reg2_form.dart';
+class Reg3Screen extends StatefulWidget {
+  static const routeName = '/reg3';
 
-class Reg2Screen extends StatefulWidget {
-  static const routeName = '/reg2';
-
-  _Reg2ScreenState createState() => _Reg2ScreenState();
+  _Reg3ScreenState createState() => _Reg3ScreenState();
 }
 
-class _Reg2ScreenState extends State<Reg2Screen> {
+class _Reg3ScreenState extends State<Reg3Screen> {
   final _auth = FirebaseAuth.instance;
   var _isLoading = false;
   UserReg userReg;
@@ -34,48 +32,35 @@ class _Reg2ScreenState extends State<Reg2Screen> {
       setState(() {
         _isLoading = true;
       });
-      if (isLogin) {
-        authResult = await _auth.signInWithEmailAndPassword(
-            email: email, password: password);
-      } else {
-        authResult = await _auth.createUserWithEmailAndPassword(
-            email: email, password: password);
-/*
-        final ref = FirebaseStorage.instance
-            .ref()
-            .child('user_images')
-            .child(authResult.user.uid + '.jpg');
+      // if (isLogin) {
+      //   authResult = await _auth.signInWithEmailAndPassword(
+      //       email: email, password: password);
+      // } else {
+      //   authResult = await _auth.createUserWithEmailAndPassword(
+      //       email: email, password: password);
+      //   final url = '';
 
-        await ref.putFile(image).onComplete;
+      //   print('22222' +
+      //       this.userReg.userName +
+      //       this.userReg.userLastName +
+      //       this.userReg.userBirth +
+      //       this.userReg.userGender.toString());
 
-        final url = await ref.getDownloadURL();
-*/
-        final url = '';
+      //   await Firestore.instance
+      //       .collection('users')
+      //       .document(authResult.user.uid)
+      //       .setData({
+      //     'username': userName,
+      //     'email': email,
+      //     'image_url': url,
+      //     'name': this.userReg.userName,
+      //     'lastname': this.userReg.userLastName,
+      //     'birth': this.userReg.userName,
+      //     'gender': this.userReg.userGender.toString(),
+      //   });
+      // }
 
-        print('22222' +
-            this.userReg.userName +
-            this.userReg.userLastName +
-            this.userReg.userBirth +
-            this.userReg.userGender.toString());
-
-        await Firestore.instance
-            .collection('users')
-            .document(authResult.user.uid)
-            .setData({
-          'username': userName,
-          'email': email,
-          'image_url': url,
-          'name': this.userReg.userName,
-          'lastname': this.userReg.userLastName,
-          'birth': this.userReg.userName,
-          'gender': this.userReg.userGender.toString(),
-        });
-      }
-
-      // seleccion de equipo
-      //Navigator.of(context).pop();
-      Navigator.of(context)
-          .popAndPushNamed(Reg3Screen.routeName, arguments: null);
+      Navigator.of(context).pop();
     } on PlatformException catch (err) {
       var message = 'An error ocurred, please check your credentials';
 
@@ -116,7 +101,7 @@ class _Reg2ScreenState extends State<Reg2Screen> {
               ),
             ),
           ),
-          Reg2Form(
+          Reg3Form(
             _submitAuthForm,
             _isLoading,
           ),

@@ -76,6 +76,10 @@ flutter:
     - assets/images/RETA_REACCION_ENOJADO.png
     - assets/images/RETA_REACCION_MEGUSTA.png
     - assets/images/RETA_REACCION_RISA.png
+    - assets/images/EQAMElogo.png
+    - assets/images/EQATSlogo.png
+    - assets/images/EQCRZlogo.png
+    - assets/images/EQGDLlogo.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
