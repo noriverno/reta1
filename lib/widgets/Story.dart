@@ -141,7 +141,8 @@ class StoryCircle extends StatefulWidget {
 }
 
 class _StoryCircleState extends State<StoryCircle> {
-  var _colorFilter = _colorFilterOriginal;
+  //var _colorFilter = _colorFilterOriginal;
+  var _colorFilter = _colorFilterGrey;
 
   void selectVideo(BuildContext context) {
     Navigator.of(context).pushNamed(

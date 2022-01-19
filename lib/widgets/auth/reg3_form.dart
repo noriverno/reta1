@@ -10,8 +10,10 @@ class Reg3Form extends StatefulWidget {
   );
 
   final bool isLoading;
-  final storyW = 100.0;
-  final storyH = 100.0;
+  //final storyW = 100.0;
+  //final storyH = 100.0;
+  final storyW = 60.0;
+  final storyH = 60.0;
 
   final void Function(
     String email,
@@ -121,7 +123,8 @@ class _Reg3FormState extends State<Reg3Form> {
                 //   ),
 
                 Container(
-                  height: 130.0,
+                  //height: 130.0, // dos filas
+                  height: 80.0,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16.0, vertical: 8.0),
@@ -174,7 +177,60 @@ class _Reg3FormState extends State<Reg3Form> {
                   ),
                 ),
                 Container(
-                  height: 130.0,
+                  height: 80.0,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 8.0),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          StoryCircle(
+                            image: "assets/images/EQAMElogo.png",
+                            name: "user1",
+                            id: 'ATR2gFYChWI',
+                            title: 'America',
+                            circle: true,
+                            width: widget.storyW,
+                            height: widget.storyH,
+                          ),
+                          const SizedBox(width: 1.0),
+                          StoryCircle(
+                            image: "assets/images/EQATSlogo.png",
+                            name: "user2",
+                            id: 'pHF3EqYdFKA',
+                            title: 'Atlas',
+                            circle: true,
+                            width: widget.storyW,
+                            height: widget.storyH,
+                          ),
+                          const SizedBox(width: 5.0),
+                          StoryCircle(
+                            image: "assets/images/EQCRZlogo.png",
+                            name: "user3",
+                            id: 'sS5UbyhtxjY',
+                            title: 'Cruz Azul',
+                            circle: true,
+                            width: widget.storyW,
+                            height: widget.storyH,
+                          ),
+                          const SizedBox(width: 10.0),
+                          StoryCircle(
+                            image: "assets/images/EQGDLlogo.png",
+                            name: "user4",
+                            id: 'XXX',
+                            title: 'Chivas',
+                            circle: true,
+                            width: widget.storyW,
+                            height: widget.storyH,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  height: 80.0,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16.0, vertical: 8.0),

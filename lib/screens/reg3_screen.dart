@@ -85,6 +85,61 @@ class _Reg3ScreenState extends State<Reg3Screen> {
     }
   }
 
+  void _showDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          titlePadding: const EdgeInsets.all(0.0),
+          title: Container(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _getCloseButton(context),
+                ],
+              ),
+            ),
+          ),
+          content: Container(
+            decoration: new BoxDecoration(
+              image: new DecorationImage(
+                image: new AssetImage("assets/images/ad.jpg"),
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  _getCloseButton(context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
+      child: GestureDetector(
+        onTap: () {},
+        child: Container(
+          alignment: FractionalOffset.topRight,
+          child: GestureDetector(
+            child: Icon(
+              Icons.clear,
+              color: Colors.red,
+            ),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _showDialog(context));
+  }
+
   @override
   Widget build(BuildContext ctx) {
     this.userReg = ModalRoute.of(context).settings.arguments as UserReg;
