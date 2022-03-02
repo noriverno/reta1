@@ -60,6 +60,7 @@ flutter:
   assets:
     - assets/images/reta_bkg.jpg
     - assets/images/reta_bkg2.jpg
+    - assets/images/reta_bkg_2.jpg
     - assets/images/reta_bkg_login.jpg
     - assets/images/reta_login_fb.jpg
     - assets/images/ph_foro1.jpg

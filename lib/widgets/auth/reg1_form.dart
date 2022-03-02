@@ -138,7 +138,7 @@ class _Reg1FormState extends State<Reg1Form> {
                             },
                           ),
                           Text(
-                            'Femenino',
+                            'F',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
@@ -162,7 +162,7 @@ class _Reg1FormState extends State<Reg1Form> {
                             },
                           ),
                           Text(
-                            'Masculino',
+                            'M',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
@@ -196,28 +196,28 @@ class _Reg1FormState extends State<Reg1Form> {
                         ],
                       ),
                     ),
-                    Column(
-                      children: <Widget>[
-                        Radio(
-                          activeColor: Colors.white,
-                          groupValue: _userGender,
-                          value: Gender.notSay,
-                          onChanged: (value) {
-                            setState(() {
-                              _userGender = value;
-                            });
-                          },
-                        ),
-                        Text(
-                          'Prefiero no decirlo',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Column(
+                    //   children: <Widget>[
+                    //     Radio(
+                    //       activeColor: Colors.white,
+                    //       groupValue: _userGender,
+                    //       value: Gender.notSay,
+                    //       onChanged: (value) {
+                    //         setState(() {
+                    //           _userGender = value;
+                    //         });
+                    //       },
+                    //     ),
+                    //     Text(
+                    //       'Prefiero no decirlo',
+                    //       style: TextStyle(
+                    //         fontWeight: FontWeight.bold,
+                    //         fontSize: 14,
+                    //         color: Colors.white,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
                 SizedBox(height: 12),

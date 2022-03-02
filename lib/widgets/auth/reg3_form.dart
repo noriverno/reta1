@@ -36,6 +36,7 @@ class _Reg3FormState extends State<Reg3Form> {
   var _userPassword = '';
   var _userPassword2 = '';
   File _userImageFile;
+  bool isTeamSelected = false;
 
   // void _pickedImage(File image) {
   //   _userImageFile = image;
@@ -57,6 +58,16 @@ class _Reg3FormState extends State<Reg3Form> {
       );
       // Navigator.of(context).pop();
     }
+  }
+
+  void onTeamSelected() {
+    setState(() {
+      if (isTeamSelected) {
+        isTeamSelected = false;
+      } else {
+        isTeamSelected = true;
+      }
+    });
   }
 
   @override
@@ -140,6 +151,8 @@ class _Reg3FormState extends State<Reg3Form> {
                             circle: true,
                             width: widget.storyW,
                             height: widget.storyH,
+                            onTeamSelected: onTeamSelected,
+                            isTeamSelected: isTeamSelected,
                           ),
                           const SizedBox(width: 1.0),
                           StoryCircle(
@@ -150,6 +163,8 @@ class _Reg3FormState extends State<Reg3Form> {
                             circle: true,
                             width: widget.storyW,
                             height: widget.storyH,
+                            onTeamSelected: onTeamSelected,
+                            isTeamSelected: isTeamSelected,
                           ),
                           const SizedBox(width: 5.0),
                           StoryCircle(
@@ -160,6 +175,8 @@ class _Reg3FormState extends State<Reg3Form> {
                             circle: true,
                             width: widget.storyW,
                             height: widget.storyH,
+                            onTeamSelected: onTeamSelected,
+                            isTeamSelected: isTeamSelected,
                           ),
                           const SizedBox(width: 10.0),
                           StoryCircle(
@@ -170,6 +187,8 @@ class _Reg3FormState extends State<Reg3Form> {
                             circle: true,
                             width: widget.storyW,
                             height: widget.storyH,
+                            onTeamSelected: onTeamSelected,
+                            isTeamSelected: isTeamSelected,
                           ),
                         ],
                       ),
@@ -193,6 +212,8 @@ class _Reg3FormState extends State<Reg3Form> {
                             circle: true,
                             width: widget.storyW,
                             height: widget.storyH,
+                            onTeamSelected: onTeamSelected,
+                            isTeamSelected: isTeamSelected,
                           ),
                           const SizedBox(width: 1.0),
                           StoryCircle(
@@ -203,6 +224,8 @@ class _Reg3FormState extends State<Reg3Form> {
                             circle: true,
                             width: widget.storyW,
                             height: widget.storyH,
+                            onTeamSelected: onTeamSelected,
+                            isTeamSelected: isTeamSelected,
                           ),
                           const SizedBox(width: 5.0),
                           StoryCircle(
@@ -213,6 +236,8 @@ class _Reg3FormState extends State<Reg3Form> {
                             circle: true,
                             width: widget.storyW,
                             height: widget.storyH,
+                            onTeamSelected: onTeamSelected,
+                            isTeamSelected: isTeamSelected,
                           ),
                           const SizedBox(width: 10.0),
                           StoryCircle(
@@ -223,6 +248,8 @@ class _Reg3FormState extends State<Reg3Form> {
                             circle: true,
                             width: widget.storyW,
                             height: widget.storyH,
+                            onTeamSelected: onTeamSelected,
+                            isTeamSelected: isTeamSelected,
                           ),
                         ],
                       ),
@@ -246,6 +273,8 @@ class _Reg3FormState extends State<Reg3Form> {
                             circle: true,
                             width: widget.storyW,
                             height: widget.storyH,
+                            onTeamSelected: onTeamSelected,
+                            isTeamSelected: isTeamSelected,
                           ),
                           const SizedBox(width: 1.0),
                           StoryCircle(
@@ -256,6 +285,8 @@ class _Reg3FormState extends State<Reg3Form> {
                             circle: true,
                             width: widget.storyW,
                             height: widget.storyH,
+                            onTeamSelected: onTeamSelected,
+                            isTeamSelected: isTeamSelected,
                           ),
                           const SizedBox(width: 5.0),
                           StoryCircle(
@@ -266,6 +297,8 @@ class _Reg3FormState extends State<Reg3Form> {
                             circle: true,
                             width: widget.storyW,
                             height: widget.storyH,
+                            onTeamSelected: onTeamSelected,
+                            isTeamSelected: isTeamSelected,
                           ),
                           const SizedBox(width: 10.0),
                           StoryCircle(
@@ -276,6 +309,8 @@ class _Reg3FormState extends State<Reg3Form> {
                             circle: true,
                             width: widget.storyW,
                             height: widget.storyH,
+                            onTeamSelected: onTeamSelected,
+                            isTeamSelected: isTeamSelected,
                           ),
                         ],
                       ),

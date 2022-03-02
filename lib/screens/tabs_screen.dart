@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:reta1/reactions/TestReaction.dart';
 import 'package:reta1/screens/chat_screen2.dart';
 import 'package:reta1/screens/home_screen.dart';
+import 'package:reta1/screens/notification_screen.dart';
 import 'package:reta1/screens/reg3_screen.dart';
 import 'package:reta1/screens/video_screen.dart';
 
@@ -28,11 +29,11 @@ class _TabsScreenState extends State<TabsScreen> {
         'title': 'Comentarios',
       },
       {
-        'page': VideoScreen(),
+        'page': Reg3Screen(),
         'title': 'Perfil',
       },
       {
-        'page': Reg3Screen(),
+        'page': NotificationScreen(),
         'title': 'Notificaciones',
       },
     ];

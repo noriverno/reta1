@@ -124,17 +124,21 @@ class StoryCircle extends StatefulWidget {
   final bool circle;
   final double width;
   final double height;
+  final VoidCallback onTeamSelected;
+  final bool isTeamSelected;
 
-  const StoryCircle(
-      {Key key,
-      this.image,
-      this.name,
-      this.id,
-      this.title,
-      this.circle,
-      this.width,
-      this.height})
-      : super(key: key);
+  const StoryCircle({
+    Key key,
+    this.image,
+    this.name,
+    this.id,
+    this.title,
+    this.circle,
+    this.width,
+    this.height,
+    this.onTeamSelected,
+    this.isTeamSelected,
+  }) : super(key: key);
 
   @override
   _StoryCircleState createState() => _StoryCircleState();
@@ -158,8 +162,10 @@ class _StoryCircleState extends State<StoryCircle> {
     setState(() {
       if (_colorFilter == _colorFilterOriginal) {
         _colorFilter = _colorFilterGrey;
-      } else {
+        widget.onTeamSelected();
+      } else if (!widget.isTeamSelected) {
         _colorFilter = _colorFilterOriginal;
+        widget.onTeamSelected();
       }
     });
   }
