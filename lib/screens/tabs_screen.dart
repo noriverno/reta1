@@ -4,6 +4,7 @@ import 'package:reta1/screens/chat_screen2.dart';
 import 'package:reta1/screens/home_screen.dart';
 import 'package:reta1/screens/notification_screen.dart';
 import 'package:reta1/screens/reg3_screen.dart';
+import 'package:reta1/screens/two_panels.dart';
 import 'package:reta1/screens/video_screen.dart';
 
 import '../widgets/main_drawer.dart';
@@ -29,7 +30,8 @@ class _TabsScreenState extends State<TabsScreen> {
         'title': 'Comentarios',
       },
       {
-        'page': Reg3Screen(),
+        // 'page': Reg3Screen(),
+        'page': MyApp2(),
         'title': 'Perfil',
       },
       {
@@ -69,7 +71,7 @@ class _TabsScreenState extends State<TabsScreen> {
           ),
           BottomNavigationBarItem(
             backgroundColor: Colors.white,
-            icon: Icon(Icons.chat),
+            icon: Icon(Icons.people),
             title: Text(''),
           ),
           BottomNavigationBarItem(

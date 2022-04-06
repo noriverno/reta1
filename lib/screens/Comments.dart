@@ -8,6 +8,8 @@ class PostX extends StatefulWidget {
   final String text;
   final List<Reaction> reactions;
 
+  //color
+
   const PostX({
     this.profileImage,
     this.name,
@@ -22,9 +24,12 @@ class PostX extends StatefulWidget {
 class _PostXState extends State<PostX> {
   @override
   Widget build(BuildContext context) {
+    final postBgColor = Colors.white; //Colors.grey[700];
+    final postTextColor = Colors.black; //Colors.white;
+
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Colors.grey[700],
+        color: postBgColor,
       ),
       child: Column(
         children: [
@@ -38,7 +43,7 @@ class _PostXState extends State<PostX> {
               widget.text,
               style: TextStyle(
                 fontSize: 18.0,
-                color: Colors.white,
+                color: postTextColor,
               ),
             ),
           ),
@@ -60,6 +65,9 @@ class _LikeCommentShareRow extends StatefulWidget {
 class __LikeCommentShareRowState extends State<_LikeCommentShareRow> {
   @override
   Widget build(BuildContext context) {
+    final postButtonBGColor = Colors.white; // Colors.grey[200];
+    final postReactionBGColor = Colors.white; // Colors.green;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -73,7 +81,7 @@ class __LikeCommentShareRowState extends State<_LikeCommentShareRow> {
           child: SizedBox(
             height: 50.0,
             child: DecoratedBox(
-              decoration: BoxDecoration(color: Colors.grey[200]),
+              decoration: BoxDecoration(color: postButtonBGColor),
               child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 FlutterReactionButtonCheck(
@@ -95,7 +103,7 @@ class __LikeCommentShareRowState extends State<_LikeCommentShareRow> {
             text: "Responder",
             iconColor: Colors.grey,
             //icon: Icons.messenger_outline_sharp,
-            bgColor: Colors.grey[200],
+            bgColor: postButtonBGColor,
           ),
         ),
         // SizedBox(width: 1.0),
@@ -112,7 +120,7 @@ class __LikeCommentShareRowState extends State<_LikeCommentShareRow> {
             text: "15 min",
             iconColor: Colors.grey,
             //icon: Icons.share,
-            bgColor: Colors.grey[200],
+            bgColor: postButtonBGColor,
           ),
         ),
         // SizedBox(width: 1.0),
@@ -121,7 +129,7 @@ class __LikeCommentShareRowState extends State<_LikeCommentShareRow> {
             text: "143",
             iconColor: Colors.white,
             icon: Icons.sports_soccer,
-            bgColor: Colors.green,
+            bgColor: postReactionBGColor,
           ),
         ),
       ],
@@ -137,6 +145,7 @@ class _PostHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final headTextColor = Colors.black; //Colors.white;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(
@@ -161,7 +170,7 @@ class _PostHeader extends StatelessWidget {
                         text: "$name ",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: headTextColor,
                         )),
                     //TextSpan(text: "updated his status"),
                   ],
