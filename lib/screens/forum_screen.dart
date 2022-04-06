@@ -19,12 +19,7 @@ class _ForumScreenState extends State<ForumScreen> {
   final _navigatorKey = GlobalKey();
 
   Route _onRoute(RouteSettings settings) {
-    final str = settings.name.split("/")[1];
-    final index = int.parse(str, onError: (s) => 0);
-
     Widget page;
-
-    print(settings.toString());
 
     if (settings.name == routeHome) {
       page = AllComments();

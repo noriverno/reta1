@@ -1,73 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:giphy_picker/giphy_picker.dart';
 
-final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
-
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
-        debugShowCheckedModeBanner: false,
-        initialRoute: '/1',
-        routes: {
-          '/1': (ctx) => Widget1(),
-          '/2': (ctx) => Widget2(),
-          '/3': (ctx) => Widget3(),
-        });
+      title: 'Giphy Picker Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
+    );
   }
 }
 
-class MyScaffold extends StatelessWidget {
-  final Widget body;
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
 
-  MyScaffold({this.body});
+class _MyHomePageState extends State<MyHomePage> {
+  GiphyGif _gif;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Navigator.canPop(context)
-            ? null
-            : Drawer(
-                child: const Text('In the Drawer', textAlign: TextAlign.center),
+      appBar: AppBar(
+        title: Text(_gif?.title ?? 'Giphy Picker Demo'),
+      ),
+      body: SafeArea(
+        child: Center(
+          child: _gif == null
+              ? Text('Pick a gif..')
+              : GiphyImage.original(gif: _gif),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blueAccent,
+        child: Icon(Icons.search),
+        onPressed: () async {
+          // request your Giphy API key at https://developers.giphy.com/
+          final gif = await GiphyPicker.pickGif(
+            context: context,
+            apiKey: 'E1guXh4A1LrcZqApNhp40HahrQPuUiYJ',
+            fullScreenDialog: false,
+            previewType: GiphyPreviewType.previewWebp,
+            decorator: GiphyDecorator(
+              showAppBar: false,
+              searchElevation: 4,
+              giphyTheme: ThemeData.dark().copyWith(
+                inputDecorationTheme: InputDecorationTheme(
+                  border: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  contentPadding: EdgeInsets.zero,
+                ),
               ),
-        body: this.body);
-  }
-}
+            ),
+          );
 
-class Widget1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MyScaffold(
-        body: Column(children: [
-      Text('Widget 1', style: Theme.of(context).textTheme.headline4),
-      FlatButton(
-          child: Text("Go to 2"),
-          onPressed: () => {Navigator.pushNamed(context, "/2")}),
-    ]));
-  }
-}
-
-class Widget2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MyScaffold(
-        body: Column(children: [
-      Text('Widget 2', style: Theme.of(context).textTheme.headline4),
-      FlatButton(
-          child: Text("Go to 3"),
-          onPressed: () => {Navigator.pushNamed(context, "/3")}),
-    ]));
-  }
-}
-
-class Widget3 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MyScaffold(
-        body: Text('Widget 3', style: Theme.of(context).textTheme.headline4));
+          if (gif != null) {
+            setState(() => _gif = gif);
+          }
+        },
+      ),
+    );
   }
 }
