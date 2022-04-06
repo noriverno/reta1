@@ -31,7 +31,7 @@ class _TabsScreenState extends State<TabsScreen> {
       },
       {
         // 'page': Reg3Screen(),
-        'page': MyApp2(),
+        'page': MyApp(),
         'title': 'Perfil',
       },
       {

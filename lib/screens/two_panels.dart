@@ -1,62 +1,73 @@
 import 'package:flutter/material.dart';
 
-//test
-class MyApp2 extends StatefulWidget {
-  @override
-  _MyAppState createState() => new _MyAppState();
+final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
+
+void main() {
+  runApp(MyApp());
 }
 
-class _MyAppState extends State<MyApp2> {
-  Route _onRoute(RouteSettings settings) {
-    final str = settings.name.split("/")[1];
-    final index = int.parse(str, onError: (s) => 0);
-
-    return new MaterialPageRoute(
-        builder: (BuildContext context) => new Home(index: index));
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/1',
+        routes: {
+          '/1': (ctx) => Widget1(),
+          '/2': (ctx) => Widget2(),
+          '/3': (ctx) => Widget3(),
+        });
   }
+}
+
+class MyScaffold extends StatelessWidget {
+  final Widget body;
+
+  MyScaffold({this.body});
 
   @override
   Widget build(BuildContext context) {
-    return new Column(
-      children: <Widget>[
-        new Expanded(
-          child: new MaterialApp(
-            title: 'Flutter Demo',
-            onGenerateRoute: _onRoute,
-          ),
-        ),
-        new Container(
-          height: 44.0,
-          color: Colors.blueAccent,
-          child: new Center(
-            child: new Text("permanent view"),
-          ),
-        )
-      ],
-    );
+    return Scaffold(
+        drawer: Navigator.canPop(context)
+            ? null
+            : Drawer(
+                child: const Text('In the Drawer', textAlign: TextAlign.center),
+              ),
+        body: this.body);
   }
 }
 
-class Home extends StatelessWidget {
-  Home({Key key, this.index}) : super(key: key);
-  final int index;
-
+class Widget1 extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => new Scaffold(
-        appBar: new AppBar(
-          title: new Text("View ${index}"),
-        ),
-        body: new Center(
-          child: new Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              new Text("View ${index}"),
-              new FlatButton(
-                  onPressed: () =>
-                      Navigator.of(context).pushNamed("/${index + 1}"),
-                  child: new Text("Push"))
-            ],
-          ),
-        ),
-      );
+  Widget build(BuildContext context) {
+    return MyScaffold(
+        body: Column(children: [
+      Text('Widget 1', style: Theme.of(context).textTheme.headline4),
+      FlatButton(
+          child: Text("Go to 2"),
+          onPressed: () => {Navigator.pushNamed(context, "/2")}),
+    ]));
+  }
+}
+
+class Widget2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MyScaffold(
+        body: Column(children: [
+      Text('Widget 2', style: Theme.of(context).textTheme.headline4),
+      FlatButton(
+          child: Text("Go to 3"),
+          onPressed: () => {Navigator.pushNamed(context, "/3")}),
+    ]));
+  }
+}
+
+class Widget3 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MyScaffold(
+        body: Text('Widget 3', style: Theme.of(context).textTheme.headline4));
+  }
 }
