@@ -70,6 +70,7 @@ Widget _videoInfo(String videoTitle) {
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
+            color: Colors.green,
           ),
         ),
       ),

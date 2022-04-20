@@ -98,14 +98,14 @@ class __LikeCommentShareRowState extends State<_LikeCommentShareRow> {
           ),
         ),
         // SizedBox(width: 1.0),
-        Expanded(
-          child: _WhatsOnYourMindButton(
-            text: "Responder",
-            iconColor: Colors.grey,
-            //icon: Icons.messenger_outline_sharp,
-            bgColor: postButtonBGColor,
-          ),
-        ),
+        // Expanded(
+        //   child: _WhatsOnYourMindButton(
+        //     text: "Responder",
+        //     iconColor: Colors.grey,
+        //     //icon: Icons.messenger_outline_sharp,
+        //     bgColor: postButtonBGColor,
+        //   ),
+        // ),
         // SizedBox(width: 1.0),
         // Expanded(
         //   child: _WhatsOnYourMindButton(
@@ -120,6 +120,15 @@ class __LikeCommentShareRowState extends State<_LikeCommentShareRow> {
             text: "15 min",
             iconColor: Colors.grey,
             //icon: Icons.share,
+            bgColor: postButtonBGColor,
+          ),
+        ),
+        // SizedBox(width: 1.0),
+        Expanded(
+          child: _WhatsOnYourMindButton(
+            text: "3",
+            iconColor: Colors.grey,
+            icon: Icons.message,
             bgColor: postButtonBGColor,
           ),
         ),
@@ -205,8 +214,8 @@ class _WhatsOnYourMindButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // if (icon != null) Icon(icon, color: iconColor),
-            if (icon != null)
+            if (icon != null) Icon(icon, color: iconColor),
+            if (icon != null && icon == Icons.sports_soccer)
               Image.asset(
                 "assets/images/RETA_REACCION_MEGUSTA.png",
                 width: 30.0,
