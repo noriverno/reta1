@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:reta1/screens/auth_screen.dart';
 import 'package:reta1/screens/forum_screen.dart';
+import 'package:reta1/screens/forumhyp_screen.dart';
 import 'package:reta1/screens/reg1_screen.dart';
 import 'package:reta1/screens/reg2_screen.dart';
 import 'package:reta1/screens/initial_screen.dart';
@@ -58,6 +59,7 @@ class MyApp extends StatelessWidget {
         Reg3Screen.routeName: (ctx) => Reg3Screen(),
         VideoScreen.routeName: (ctx) => VideoScreen(),
         ForumScreen.routeName: (ctx) => ForumScreen(),
+        HyperForumScreen.routeName: (ctx) => HyperForumScreen(),
       },
     );
   }

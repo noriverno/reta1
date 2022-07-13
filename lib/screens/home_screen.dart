@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:reta1/screens/forum_screen.dart';
+import 'package:reta1/screens/forumhyp_screen.dart';
 import 'package:reta1/widgets/Story.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -121,6 +122,7 @@ class HomePage extends StatelessWidget {
                     title:
                         '¿Quién ganará la liga MX? Dinos para ti quién será el campeón',
                     id: '3',
+                    hyper: true,
                   ),
                   Post(
                     userName: 'dancamdev',
@@ -147,6 +149,7 @@ class Post extends StatelessWidget {
   final String title;
   final String id;
   final bool ad;
+  final bool hyper;
 
   const Post({
     Key key,
@@ -156,17 +159,29 @@ class Post extends StatelessWidget {
     this.title,
     this.id,
     this.ad,
+    this.hyper,
   }) : super(key: key);
 
   void selectForum(BuildContext context) {
-    Navigator.of(context).pushNamed(
-      ForumScreen.routeName,
-      arguments: {
-        'id': id,
-        'title': title,
-        'image': image,
-      },
-    );
+    if (hyper == null) {
+      Navigator.of(context).pushNamed(
+        ForumScreen.routeName,
+        arguments: {
+          'id': id,
+          'title': title,
+          'image': image,
+        },
+      );
+    } else {
+      Navigator.of(context).pushNamed(
+        HyperForumScreen.routeName,
+        arguments: {
+          'id': id,
+          'title': title,
+          'image': image,
+        },
+      );
+    }
   }
 
   @override
