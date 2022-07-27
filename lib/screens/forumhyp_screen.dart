@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:reta1/screens/Comments.dart';
-import 'package:reta1/screens/two_panels.dart';
 import 'package:reta1/widgets/constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -113,7 +112,7 @@ class _HyperForumScreenState extends State<HyperForumScreen> {
                                   children: <Widget>[
                                     Expanded(
                                       child: Text(
-                                        '45:00',
+                                        '84:00',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontSize: 20,
@@ -139,37 +138,104 @@ class _HyperForumScreenState extends State<HyperForumScreen> {
                           height: 20,
                         ),
                       ),
-                      Row(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            '13′',
-                            textAlign: TextAlign.justify,
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.grey[500],
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Icon(
-                            Icons.sports_soccer,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'Marco A. Solis',
-                            textAlign: TextAlign.justify,
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.grey[500],
-                            ),
-                          ),
-                        ],
+                      // Container(
+                      //   constraints: new BoxConstraints(
+                      //     minHeight: 50.0,
+                      //     maxHeight: 150.0,
+                      //   ),
+                      //   child: Column(
+                      //     mainAxisSize: MainAxisSize.min,
+                      //     children: [
+                      //       Row(
+                      //         children: <Widget>[
+                      //           SizedBox(
+                      //             width: 20,
+                      //           ),
+                      //           Text(
+                      //             '13′',
+                      //             textAlign: TextAlign.justify,
+                      //             style: TextStyle(
+                      //               fontSize: 20,
+                      //               color: Colors.grey[500],
+                      //             ),
+                      //           ),
+                      //           SizedBox(
+                      //             width: 10,
+                      //           ),
+                      //           Icon(
+                      //             Icons.sports_soccer,
+                      //           ),
+                      //           SizedBox(
+                      //             width: 10,
+                      //           ),
+                      //           Text(
+                      //             'Marco A. Solis',
+                      //             textAlign: TextAlign.justify,
+                      //             style: TextStyle(
+                      //               fontSize: 20,
+                      //               color: Colors.grey[500],
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                      Container(
+                        constraints: new BoxConstraints(
+                          minHeight: 50.0,
+                          maxHeight: 150.0,
+                        ),
+                        child: ListView.separated(
+                          itemCount: snapshot.data.listEvents.length,
+                          separatorBuilder: (context, index) => Divider(),
+                          itemBuilder: (context, index) {
+                            final event = snapshot.data.listEvents[index];
+                            var icon;
+
+                            if (event.type == 'Goal') {
+                              icon = Icon(Icons.sports_soccer);
+                            } else if (event.detail == 'Yellow Card' ||
+                                event.detail == 'Red Card') {
+                              icon = ImageIcon(
+                                AssetImage("assets/images/TARJETA.png"),
+                              );
+                            } else {
+                              icon = Text(event.type);
+                            }
+
+                            return Row(
+                              children: <Widget>[
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  event.time.toString() + '′',
+                                  textAlign: TextAlign.justify,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.grey[500],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                icon,
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  event.player,
+                                  textAlign: TextAlign.justify,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.grey[500],
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
                       ),
                       Container(
                         child: SizedBox(
@@ -211,7 +277,8 @@ class _HyperForumScreenState extends State<HyperForumScreen> {
         'GET',
         Uri.parse(
             // 'https://v3.football.api-sports.io/fixtures?season=2022&team=2287&date=2022-07-10'));
-            'https://v3.football.api-sports.io/fixtures?id=864108'));
+            //'https://v3.football.api-sports.io/fixtures?id=864108'));
+            'https://v3.football.api-sports.io/fixtures?id=869542'));
 
     request.headers.addAll(headers);
 
@@ -219,10 +286,12 @@ class _HyperForumScreenState extends State<HyperForumScreen> {
 
     if (streamedResponse.statusCode == 200) {
       //print(await streamedResponse.stream.bytesToString());
-
       var response = await http.Response.fromStream(streamedResponse);
 
       final decodedJson = jsonDecode(response.body); // dynamic
+
+      //print(decodedJson['response'][0]['events'][0]);
+
       final venue =
           decodedJson['response'][0]['fixture']['venue']['name'] as String;
       final league = decodedJson['response'][0]['league']['name'] as String;
@@ -237,6 +306,11 @@ class _HyperForumScreenState extends State<HyperForumScreen> {
           decodedJson['response'][0]['teams']['away']['logo'] as String;
       final awayGoals = decodedJson['response'][0]['goals']['away'] as int;
 
+      List<Event> listEvents = <Event>[];
+      for (var json in decodedJson['response'][0]['events']) {
+        listEvents.add(Event.fromJson(json));
+      }
+
       Match match = Match(
         venue: venue,
         league: league,
@@ -246,6 +320,7 @@ class _HyperForumScreenState extends State<HyperForumScreen> {
         away: away,
         awayLogo: awayLogo,
         awayGoals: awayGoals,
+        listEvents: listEvents,
       );
 
       return match;
@@ -392,4 +467,76 @@ class _CommentState extends State<Comment> {
       ],
     );
   }
+}
+
+class Event {
+  int time;
+  int extra;
+  String team;
+  String player;
+  String type;
+  String detail;
+  String comment;
+
+  Event._(
+      {this.time,
+      this.extra,
+      this.team,
+      this.player,
+      this.type,
+      this.detail,
+      this.comment});
+
+  factory Event.fromJson(Map<String, dynamic> json) {
+    return new Event._(
+      time: json['time']['elapsed'],
+      extra: json['time']['extra'],
+      team: json['team']['name'],
+      player: json['player']['name'],
+      type: json['type'],
+      detail: json['detail'],
+      // extra: json['extra'],
+      // team: json['team'],
+      // player: json['player'],
+      // type: json['type'],
+      // detail: json['detail'],
+    );
+  }
+}
+
+class Match {
+  final String venue;
+  final String league;
+  final String home;
+  final String homeLogo;
+  final int homeGoals;
+  final String away;
+  final String awayLogo;
+  final int awayGoals;
+  final List<Event> listEvents;
+
+  Match({
+    this.venue,
+    this.league,
+    this.home,
+    this.homeLogo,
+    this.homeGoals,
+    this.away,
+    this.awayLogo,
+    this.awayGoals,
+    this.listEvents,
+  });
+
+  // factory Match.fromJson(Map<String, dynamic> json) {
+  //   return Match(
+  //     venue: json['venue'],
+  //     league: json['league'],
+  //     home: json['home'],
+  //     homeLogo: json['homeLogo'],
+  //     homeGoals: json['homeGoals'],
+  //     away: json['away'],
+  //     awayLogo: json['awayLogo'],
+  //     awayGoals: json['awayGoals'],
+  //   );
+  // }
 }
